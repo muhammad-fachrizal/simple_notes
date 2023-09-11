@@ -1,0 +1,1 @@
+A full stack simple notes application for CRUD operation related to manage a note. Created using Express.js for the back-end and deployed on railway (https://express-simple-notes-6468.up.railway.app), PostgreSQL for the database, and Flutter framework for the front-end.
