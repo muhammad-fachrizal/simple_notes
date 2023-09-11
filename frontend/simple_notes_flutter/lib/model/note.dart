@@ -34,7 +34,7 @@ class Note {
   factory Note.fromMap(Map<String, dynamic> map) {
     return Note(
       id: map['id'] as int,
-      title: map['title'] as String,
+      title: map['title'] ?? '',
       note: map['note'] as String,
     );
   }
@@ -45,7 +45,6 @@ class Note {
       id: json['id'] as int,
       title: json['title'] ?? '',
       note: json['note'] as String);
-  //Note.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() => 'Note(id: $id, title: $title, note: $note)';

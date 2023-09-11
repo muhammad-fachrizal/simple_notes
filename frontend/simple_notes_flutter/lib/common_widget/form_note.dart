@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:simple_notes_flutter/data/note_api.dart';
-import 'package:simple_notes_flutter/main.dart';
 import 'package:simple_notes_flutter/model/note.dart';
 
 class FormNote extends StatefulWidget {
@@ -30,12 +29,10 @@ class _FormNoteState extends State<FormNote> {
 
   @override
   Widget build(BuildContext context) {
-    print('isAdd value inside build: $isAdd');
     return Scaffold(
       body: SafeArea(
         child: Column(
           children: [
-            //Text(widget.noteModel.id.toString()),
             const SizedBox(
               height: 16,
             ),
@@ -46,17 +43,12 @@ class _FormNoteState extends State<FormNote> {
                 minLines: 1,
                 maxLines: 2,
                 decoration: const InputDecoration(
-                  // enabledBorder: const OutlineInputBorder(
-                  //   borderSide: const BorderSide(color: Colors.grey, width: 2s.0),
-                  // ),
                   labelText: 'Title',
-                  //hintText: '',
                   floatingLabelBehavior: FloatingLabelBehavior.always,
                   border: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.blueGrey, width: 20.0),
                   ),
                 ),
-                //textDirection: TextDirection.ltr,
               ),
             ),
             const SizedBox(
@@ -66,9 +58,6 @@ class _FormNoteState extends State<FormNote> {
               child: Container(
                 margin: const EdgeInsets.symmetric(horizontal: 8),
                 child: TextField(
-                  // decoration: InputDecoration.collapsed(
-                  //   hintText: 'note',
-                  // ),
                   decoration: const InputDecoration(
                     labelText: 'Note',
                     floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -113,20 +102,12 @@ class _FormNoteState extends State<FormNote> {
                         },
                       );
                     } else {
-                      print('isAdd value inside save button: $isAdd');
-                      // (isAdd!)
-                      //     ? await addNewNote(context)
-                      //     : await updateNote(context);
-                      print(
-                          'note: ${Note(id: widget.noteModel.id, title: _title, note: _note)}');
                       var response = (isAdd!)
                           ? await NoteApi.addNewNoteApi(_title, _note)
                           : await NoteApi.updateNoteApi(Note(
                               id: widget.noteModel.id,
                               title: _title,
                               note: _note));
-                      print('statusCode: ${response.statusCode}');
-                      //print('isMounted ${context.mounted}');
                       //check the context is mounted or not
                       if (!mounted) return;
                       if (response.statusCode == 200 ||
@@ -178,62 +159,5 @@ class _FormNoteState extends State<FormNote> {
     setState(() {
       isAdd = prefs.getBool('isAdd');
     });
-    //isAdd = prefs.getBool('isAdd');
-    print('isAdd value inside checkFlag(): $isAdd');
   }
-
-  // Future<void> updateNote(BuildContext context) async {
-  //   print('note: ${Note(id: widget.noteModel.id, title: _title, note: _note)}');
-  //   var response = await NoteApi.updateNoteApi(
-  //       Note(id: widget.noteModel.id, title: _title, note: _note));
-  //   print('statusCode: ${response.statusCode}');
-  //   print('isMounted ${context.mounted}');
-  //   if (response.statusCode == 200 && context.mounted) {
-  //     showDialog(
-  //       context: context,
-  //       builder: (BuildContext context) {
-  //         return AlertDialog(
-  //           title: const Text('Update Note'),
-  //           content: const Text('Note Updated Successfully'),
-  //           actions: [
-  //             TextButton(
-  //               onPressed: () {
-  //                 Navigator.pushNamedAndRemoveUntil(
-  //                     context, '/listNoteScreen', ((route) => false));
-  //               },
-  //               child: const Text('OK'),
-  //             ),
-  //           ],
-  //         );
-  //       },
-  //     );
-  //   }
-  // }
-
-  // Future<void> addNewNote(BuildContext context) async {
-  //   print('note: ${_title} _${_note}');
-  //   var response = await NoteApi.addNewNoteApi(_title, _note);
-  //   print('statusCode: ${response.statusCode}');
-  //   print('isMounted ${context.mounted}');
-  //   if (response.statusCode == 200 && context.mounted) {
-  //     showDialog(
-  //       context: context,
-  //       builder: (BuildContext context) {
-  //         return AlertDialog(
-  //           title: const Text('Add New Note'),
-  //           content: const Text('New Note Added Successfully'),
-  //           actions: [
-  //             TextButton(
-  //               onPressed: () {
-  //                 Navigator.pushNamedAndRemoveUntil(
-  //                     context, '/listNoteScreen', ((route) => false));
-  //               },
-  //               child: const Text('OK'),
-  //             ),
-  //           ],
-  //         );
-  //       },
-  //     );
-  //   }
-  // }
 }

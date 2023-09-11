@@ -10,7 +10,6 @@ class NoteCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        //setFlag();
         Navigator.pushNamed(context, '/detailNoteScreen',
             arguments: Note(
                 id: noteModel.id,
@@ -54,33 +53,9 @@ class NoteCardWidget extends StatelessWidget {
             const SizedBox(
               height: 6,
             ),
-            // Expanded(
-            //   flex: 1,
-            //   child: Text(
-            //     title,
-            //     style:
-            //         const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-            //   ),
-            // ),
-            // Expanded(
-            //   flex: 3,
-            //   child: Text(
-            //     note,
-            //     style: const TextStyle(fontSize: 14),
-            //     maxLines: 1,
-            //     overflow: TextOverflow.ellipsis,
-            //   ),
-            // ),
           ],
         ),
       ),
     );
   }
-
-  // void setFlag() {
-  //   //final SharedPreferences prefs = await SharedPreferences.getInstance();
-  //   prefs.setBool('isAdd', false);
-  //   bool? isAdd = prefs.getBool('isAdd');
-  //   print('isAdd value inside setFlag(): $isAdd');
-  // }
 }

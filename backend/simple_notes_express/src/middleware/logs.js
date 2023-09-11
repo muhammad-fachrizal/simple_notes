@@ -5,7 +5,6 @@
 //
 // the example shown below will be for logging, and it is run on every request
 const logRequest = (req, res, next) => {
-    // try it out at http://localhost:3000/?query=hello+world and check the console
     const start = Date.now();
     res.on("finish", () => {
       const responseTime = Date.now() - start;
