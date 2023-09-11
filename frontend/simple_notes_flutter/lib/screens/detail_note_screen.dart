@@ -37,6 +37,12 @@ class _DetailNoteScreenState extends State<DetailNoteScreen> {
                       content: const Text('Do you want to delete this note?'),
                       actions: [
                         TextButton(
+                          onPressed: () {
+                            Navigator.pop(context, 'CANCEL');
+                          },
+                          child: const Text('CANCEL'),
+                        ),
+                        TextButton(
                           onPressed: () async {
                             var response = await NoteApi.deleteNoteApi(
                                 widget.noteModel.id);
@@ -59,12 +65,6 @@ class _DetailNoteScreenState extends State<DetailNoteScreen> {
                             }
                           },
                           child: const Text('OK'),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            Navigator.pop(context, 'CANCEL');
-                          },
-                          child: const Text('CANCEL'),
                         ),
                       ],
                     );

@@ -134,9 +134,12 @@ class _FormNoteState extends State<FormNote> {
                         Navigator.pop(context, 'OK');
                       }
                     }
-                  },
+                  }, //isAdd == true
                   child: Text(
-                    (isAdd ?? true) ? 'Add' : 'Update',
+                    ((_titleController.text.toString().trim().isEmpty &&
+                            _noteController.text.toString().trim().isEmpty))
+                        ? 'Add'
+                        : 'Update',
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
